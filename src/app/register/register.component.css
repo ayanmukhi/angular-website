@@ -1,0 +1,42 @@
+.btn{
+    margin: 0px 5px;
+}
+.form-body {
+    box-shadow: 0 0 10px 5px #d6d4ce;
+    margin-left: 18%;
+    margin-right: 18%;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-top: 5px;
+    position: relative;
+    border: 2px solid #d6d4ce;
+    background: #d6d4ce;
+}
+.form-group-style{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.form-heading{
+    text-align: center;
+    position: relative;
+    font-size: 33px;
+    line-height: 36px;
+    font-weight: 700;
+    font-family: cursive;
+    font-variant: all-petite-caps;
+    color: rgb(255, 255, 255);
+}
+.labelDsip {
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+}
+.labels{
+    border-right: 1px solid grey;
+    margin-right: 10px;
+}
+
+.register-web-background{
+    padding-top: 40px;
+}

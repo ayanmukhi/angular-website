@@ -1,0 +1,13 @@
+{
+    "require": {
+        "slim/slim": "3.*",
+        "slim/psr7": "^1.0",
+        "firebase/php-jwt": "^5.0"
+    },
+    "autoload": {
+        "classmap": [
+            "src/config/connection",
+            "src/config"
+        ]
+    }
+}

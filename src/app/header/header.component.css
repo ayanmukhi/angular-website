@@ -1,0 +1,17 @@
+
+.headerTitle {
+    color: #000000;
+    /* position: relative; */
+    font-weight: 700;
+    padding: 0px 30px;
+    font-family: initial;
+    border-bottom:1px solid #000000;
+    box-shadow: 0 0 15px 10px #141414;
+    background-color: rgb(214, 212, 206);
+}
+.home {
+    padding-right: 10px;
+    position: absolute;
+    float: right;
+    font-weight: bold;
+}
