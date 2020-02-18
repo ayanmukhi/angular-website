@@ -10,8 +10,8 @@ import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from "@angular/common/http";
-
-// import { ApiServiceService } from "./api-service.service";
+import { loginResponse } from './classes/loginResponse';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +21,7 @@ import { HttpClientModule } from "@angular/common/http";
     FooterComponent,
     ProfileComponent,
     RegisterComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,10 +30,8 @@ import { HttpClientModule } from "@angular/common/http";
     FormsModule,
     HttpClientModule
   ],
-  providers: [  ],
+  providers: [ loginResponse],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-
-  
  }

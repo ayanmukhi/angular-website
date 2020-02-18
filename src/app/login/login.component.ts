@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { emailValidator, passwordValidator } from '../shared/form-validators';
 import { ApiServiceService } from "../api-service.service";
+import { loginResponse } from '../classes/loginResponse';
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-login',
@@ -10,9 +14,15 @@ import { ApiServiceService } from "../api-service.service";
 })
 export class LoginComponent implements OnInit {
 
-  userData : any;
-  constructor( private fb: FormBuilder, private _apiservice: ApiServiceService) { }
+
+  public credentialsMatch = "";
+  userData : loginResponse;
+  token : string;
+
+  constructor( private fb: FormBuilder, private _apiservice: ApiServiceService, private route: Router) { }
   
+
+
   get getUsername() {
     return this.loginForm.get('username');
   }
@@ -27,19 +37,26 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit(){
-    console.log(this.loginForm.value);
     this._apiservice.login(this.loginForm.value)
     .subscribe(
       data => this.saveData(data),
-      error => console.log(error)
+      error => this.errorData(error)
     );
   }
 
+
+  errorData(error){
+    this.credentialsMatch = "credentials dosen't match each other";
+  }
+
+
+
   saveData(data) {
-    //console.log("in func");
     this.userData = data;
-    console.log(this.userData)
-    console.log(this.userData.data);
+    
+    localStorage.setItem('jwt', this.userData.token);
+    this.route.navigate(['/profile']);
+    console.log("now " + this.userData.data.status);
   }
 
 

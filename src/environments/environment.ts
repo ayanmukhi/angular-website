@@ -3,6 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  loginapi: 'http://schoolserver/php/slim/profile/index.php/api/v1/login',
+  getapi: 'http://schoolserver/php/slim/profile/index.php/api/v1/students',
   production: false
 };
 

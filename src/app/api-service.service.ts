@@ -1,15 +1,39 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { environment } from './../environments/environment';
+import { loginResponse } from './classes/loginResponse'
+import { getResponse } from "./classes/getresponse";
+import * as jwt_decode from 'jwt-decode';
+
 
 @Injectable({
   providedIn: 'root'
 })
+
+
+
 export class ApiServiceService {
+  token: any;
+  sic:number;
+  private res: number;
+  headers = new HttpHeaders();
+  
+  constructor(private readonly httpclient: HttpClient) { }
 
-  constructor(private httpclient: HttpClient) { }
+  get(rawtoken): Observable <getResponse> {
+    const opts = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer ' + rawtoken
+      })
+    };
+    // this.headers.append('Authorization', 'Bearer ' + rawtoken);
+    this.token = JSON.parse(jwt_decode(rawtoken));
+    this.sic = this.token.sic;
+    return this.httpclient.get<getResponse>(environment.getapi + "/" + this.sic, opts);
+  }
 
-  login(data): Observable<any> {
-    return this.httpclient.post<any>("http://schoolserver/php/slim/profile/index.php/api/v1/login", data);
+  login(data ): Observable <loginResponse>  {
+    return this.httpclient.post<loginResponse>(environment.loginapi, data);
   }
 }
