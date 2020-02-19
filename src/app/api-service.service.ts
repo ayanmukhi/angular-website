@@ -33,6 +33,17 @@ export class ApiServiceService {
     return this.httpclient.get<getResponse>(environment.getapi + "/" + this.sic, opts);
   }
 
+  getadmin(rawtoken): Observable <getResponse> {
+    const opts = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer ' + rawtoken
+      })
+    };
+    this.token = JSON.parse(jwt_decode(rawtoken));
+    this.sic = this.token.sic;
+    return this.httpclient.get<getResponse>(environment.getapi, opts);
+  }
+
   login(data): Observable <loginResponse>  {
     return this.httpclient.post<loginResponse>(environment.loginapi, data);
   }

@@ -22,24 +22,24 @@
             </tr>
         </thead>
         <tbody>   
-            <tr>
-                <td>{{userData.result.sic}}</td>
-                <td>{{userData.result.stu_name}}</td>
-                <td>{{userData.result.gender}}</td>
-                <td>{{userData.result.father_name}}</td>
-                <td>{{userData.result.mother_name}}</td>
-                <td>{{userData.result.dob}}</td>
-                <td>{{userData.result.matric_board}}</td>
-                <td>{{userData.result.matric_roll}}</td>
-                <td>{{userData.result.matric_perc}}</td>
-                <td>{{userData.result.state}}</td>
-                <td>{{userData.result.district}}</td>
-                <td>{{userData.result.street_address}}</td>
-                <td>{{userData.result.phone}}</td>
-                <td>{{userData.result.email}}</td>
-                <td>{{userData.result.password}}</td>
-                <td>{{userData.result.status}}</td>
-                <td>{{userData.result.hobby}}</td>
+            <tr *ngFor="let userData of records">
+                <td>{{userData.sic}}</td>
+                <td>{{userData.stu_name}}</td>
+                <td>{{userData.gender}}</td>
+                <td>{{userData.father_name}}</td>
+                <td>{{userData.mother_name}}</td>
+                <td>{{userData.dob}}</td>
+                <td>{{userData.matric_board}}</td>
+                <td>{{userData.matric_roll}}</td>
+                <td>{{userData.matric_perc}}</td>
+                <td>{{userData.state}}</td>
+                <td>{{userData.district}}</td>
+                <td>{{userData.street_address}}</td>
+                <td>{{userData.phone}}</td>
+                <td>{{userData.email}}</td>
+                <td>{{userData.password}}</td>
+                <td>{{userData.status}}</td>
+                <td>{{userData.hobby}}</td>
             </tr>
     </tbody>
     </table>

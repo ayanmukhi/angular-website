@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiServiceService } from '../api-service.service';
 import { Router } from '@angular/router';
-import { getResponse } from '../classes/getresponse';
+import { getallResponse } from '../classes/getallresponse';
 
 @Component({
   selector: 'app-admin',
@@ -13,12 +13,13 @@ export class AdminComponent implements OnInit {
 
   sic:number;
   token:any;
-  userData:getResponse[];
+  Data:getallResponse[];
+  records:[];
   constructor(private _apiservice: ApiServiceService, private route:Router ) { }
 
   
   ngOnInit() {
-    this._apiservice.get(localStorage.getItem('jwt'))
+    this._apiservice.getadmin(localStorage.getItem('jwt'))
     .subscribe(
       data => this.saveData(data),
       error => error
@@ -26,8 +27,9 @@ export class AdminComponent implements OnInit {
   }
 
   saveData(data) {
-    this.userData = data;
-    console.log(this.userData[0].result.sic);
+    this.Data = data;
+    this.records = this.Data.result;
+    console.log(this.Data.result[1].sic);
   }
 
 }

@@ -5,6 +5,8 @@ import { ApiServiceService } from "../api-service.service";
 import { loginResponse } from '../classes/loginResponse';
 import { Router } from '@angular/router';
 
+import * as jwt_decode from 'jwt-decode';
+
 
 
 @Component({
@@ -55,8 +57,16 @@ export class LoginComponent implements OnInit {
     this.userData = data;
     
     localStorage.setItem('jwt', this.userData.token);
-    this.route.navigate(['/profile']);
+    
+
+    // this.route.navigate(['/profile']);
     console.log("now " + this.userData.data.status);
+    if( this.userData.data.status == "A") {
+      this.route.navigate(['/admin']);
+    }
+    else {
+      this.route.navigate(['/profile']);
+    }
   }
 
 
