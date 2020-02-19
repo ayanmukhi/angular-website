@@ -2,6 +2,7 @@
     
     <div class="col-md-8" class="headerTitle" [style.font-size]="fontweight" [style.line-height]="headerHeight"  routerLink="/">
         <a routerLink="/">HIGH SCHOOL OF ONE PIECE</a>
+        <span (click)="logout()" class="logout" *ngIf="checkJwt()" id="logout_button">LOGOUT</span>
     </div>
     
 </div>

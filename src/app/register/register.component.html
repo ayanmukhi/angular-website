@@ -2,36 +2,47 @@
     <div class="form-heading">
         REGISTRATION FORM
     </div>
-    <form class="form-body" id="form" onsubmit="return stu_module.exposed_check_submit();">
+    <form class="form-body" id="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="form-group form-group-style">
             <label class="labelDsip">NAME<i style="color: rgba(255, 0, 0, 0.747);"> *</i></label>
             <div class="form-row">
                 <div class="col">
-                    <input type="text" id="nameFirst" name="nameFirst" class="form-control " placeholder="First name" value="">
-                    <small id="nameFirstHelp" class="form-text invalidError"></small>
+                    <input type="text" id="nameFirst" formControlName="nameFirst" name="nameFirst" class="form-control "  placeholder="First name" value="">
+                    <div *ngIf="getnameFirst.invalid && getnameFirst.touched || getnameFirst.dirty" class="text-danger">
+                        <small *ngIf="getnameFirst.errors ?.required">First Name is required<br></small>
+                        <small *ngIf="getnameFirst.errors ?.value">First Name is not correct</small>
+                    </div>
                 </div>
                 <div class="col">
-                    <input type="text" id="nameSecond" name="nameSecond" class="form-control" placeholder="Middle name" value="" >
-                    <small id="nameSecondHelp" class="form-text invalidError"></small>
+                    <input type="text" id="nameSecond" formControlName="nameSecond" name="nameSecond" class="form-control" placeholder="Middle name" value="" >
+                    <div *ngIf="getnameSecond.invalid && getnameSecond.touched || getnameSecond.dirty" class="text-danger">
+                        <small *ngIf="getnameSecond.errors ?.value">Second Name is not correct</small>
+                    </div>
                 </div>
                 <div class="col">
-                    <input type="text" id="nameThird" name="nameThird" class="form-control" placeholder="Last name" value="" >
-                    <small id="nameThirdHelp" class="form-text invalidError"></small>
+                    <input type="text" id="nameThird" formControlName="nameThird" name="nameThird" class="form-control" placeholder="Last name" value="" >
+                    <div *ngIf="getnameThird.invalid && getnameThird.touched || getnameThird.dirty" class="text-danger">
+                        <small *ngIf="getnameThird.errors ?.required">Third Name is required<br></small>
+                        <small *ngIf="getnameThird.errors ?.value">Third Name is not correct</small>
+                    </div>
                 </div>
             </div>
-            <small id="nameHelp" class="form-text invalidError"></small>
         </div>
         
         <div class="form-row form-group-style">
             <div class="form-group col">
                 <label for="fatherName"  class="labelDsip">FATHER'S NAME<i style="color: rgba(255, 0, 0, 0.747);"> *</i></label>
-                <input type="text" name="fatherName" class="form-control" id="fatherName" value="" placeholder="ENTER FULL NAME OF FATHER" >
-                <small id="fatherNameHelp" class="form-text invalidError"></small>
+                <input type="text" formControlName="fatherName" name="fatherName" class="form-control" id="fatherName" value="" placeholder="ENTER FULL NAME OF FATHER" >
+                <div *ngIf="getfatherName.invalid && getfatherName.touched || getfatherName.dirty" class="text-danger">
+                    <small *ngIf="getfatherName.errors ?.value">Father Name is not correct</small>
+                </div>
             </div>
             <div class="form-group col">
                 <label for="motherName"  class="labelDsip">MOTHER'S NAME</label>
-                <input type="text" class="form-control" name="motherName" value="" id="motherName" placeholder="ENTER FULL NAME OF MOTHER" >
-                <small id="motherNameHelp" class="form-text invalidError"></small>
+                <input type="text" formControlName="motherName"  class="form-control" name="motherName" value="" id="motherName" placeholder="ENTER FULL NAME OF MOTHER" >
+                <div *ngIf="getmotherName.invalid && getmotherName.touched || getmotherName.dirty" class="text-danger">
+                    <small *ngIf="getmotherName.errors ?.value">Mother Name is not correct</small>
+                </div>
             </div>
         </div>
         <div class="form-row form-group-style">
@@ -39,7 +50,7 @@
                 <div class="form-row">
                     <div class="form-group col">
                         <label for="dob"  class="labelDsip">DATE OF BIRTH<i style="color: rgba(255, 0, 0, 0.747);"> *</i></label>
-                        <input type="date" class="form-control" id="dob" name="date" >
+                        <input type="date" formControlName='dob' class="form-control" id="dob" name="date" >
                         <small id="dateHelp" class="form-text invalidError"></small>
                     </div>
                 </div>
@@ -48,25 +59,24 @@
                         <label  class="labelDsip" >GENDER</label>
                         <div class="form-control form-row" style="height: auto;margin: 0px;">
                             <div class="custom-control custom-radio custom-control-inline" style="display: inline;padding: 0px 25px;" >
-                                <input type="radio" class="custom-control-input" id="radioSexMale" name="gender" value="male" class="custom-control-input" style="padding: 20px;">
+                                <input type="radio" formControlName='gender' class="custom-control-input" id="radioSexMale" name="gender" value="male" class="custom-control-input" style="padding: 20px;">
                                 <label class="custom-control-label" for="radioSexMale">Male</label>
                             </div >
                             <div class="custom-control custom-radio custom-control-inline" style="display: inline;padding: 0px 25px;">
-                                <input type="radio" class="custom-control-input" id="radioSexFemale" name="gender" value="female" class="custom-control-input">
+                                <input type="radio" formControlName='gender' class="custom-control-input" id="radioSexFemale" name="gender" value="female" class="custom-control-input">
                                 <label class="custom-control-label" for="radioSexFemale">Female</label>
                             </div >
                             <div class="custom-control custom-radio custom-control-inline" style="display: inline;padding: 0px 25px;">
-                                <input type="radio" class="custom-control-input" id="radioSexOther" name="gender" value="other" class="custom-control-input">
+                                <input type="radio" formControlName='gender' class="custom-control-input" id="radioSexOther" name="gender" value="other" class="custom-control-input">
                                 <label class="custom-control-label" for="radioSexOther">Other</label>
                             </div>
                         </div>
-                        <small id="genderHelp" class="form-text invalidError"></small>
                     </div>
                 
             </div>
             <div class="form-group col">
                 <label for="address"  class="labelDsip">STREET NAME/HOUSE NO/PIN</label>
-                <textarea class="form-control" id="address" rows="5" name="presentAddress" style="overflow: hidden;" value="" ></textarea>
+                <textarea formControlName='streetaddress' class="form-control" id="address" rows="5" name="presentAddress" style="overflow: hidden;" value="" ></textarea>
                 <small id="addressHelp" class="invalidError"></small>
             </div>
             
@@ -76,35 +86,49 @@
             <label  class="labelDsip">CLASS X<i style="color: rgba(255, 0, 0, 0.747);"> *</i></label>
             <div class="form-row">
                 <div class="col">
-                    <select class="browser-default custom-select" name="classX" id="XBoard" >
-                        <option selected="selected" value="NONE" name="Xoptions">Select the Board</option>
+                    <select class="browser-default custom-select" name="classX" id="XBoard" formControlName="board" >
                         <option value="CBSE" name="Xoptions">CBSE</option>
                         <option value="ICSE" name="Xoptions">ICSE</option>
                         <option value="CHSE" name="Xoptions">CHSE</option>
                     </select>
-                    <small id="classXHelp" class="invalidError"></small>
+                    <div *ngIf="getboard.invalid && getboard.touched || getboard.touched" class="text-danger">
+                        <small *ngIf="getboard.errors ?.required">Select your board<br></small>
+                    </div>
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control" id="XRoll" value="" placeholder="ENTER CLASS X ROLL NUMBER" name="XRoll" >
-                    <small id="XRollHelp" class="invalidError"></small>
+                    <input type="text" formControlName="roll" class="form-control" id="XRoll" placeholder="ENTER CLASS X ROLL NUMBER" name="XRoll" >
+                    <div *ngIf="getroll.invalid && getroll.touched || getroll.dirty" class="text-danger">
+                        <small *ngIf="getroll.errors ?.required">Roll is required<br></small>
+                        <small *ngIf="getroll.errors ?.value">Roll should be number<br></small>
+                    </div>
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control" id="Xmarks" value="" placeholder="Percentage(avoid '%' symbol)" name="XPerc" >
-                    <small id="XPercHelp" class="invalidError"></small>
+                    <input type="text" formControlName="perc" class="form-control" id="Xmarks" value="" placeholder="Percentage(avoid '%' symbol)" name="XPerc" >
+                    <div *ngIf="getperc.invalid && getperc.touched || getperc.dirty" class="text-danger">
+                        <small *ngIf="getperc.errors ?.required">Percentage is required<br></small>
+                        <small *ngIf="getperc.errors ?.value">Percentage should be between 0-100<br></small>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="form-row">
                 <div class="col">
                     <label  class="labelDsip">PASSWORD<i style="color: rgba(255, 0, 0, 0.747);"> *</i></label>
-                        <input type="password" id="password" name="password" class="form-control" />
-                        <small id="passwordHelp" class="invalidError"></small>
+                        <input type="password" formControlName="password" id="password" name="password" class="form-control" />
+                        <div *ngIf="getpassword.invalid && getpassword.touched || getpassword.dirty" class="text-danger">
+                            <small *ngIf="getpassword.errors ?.required">Password is required<br></small>
+                            <small *ngIf="getpassword.errors ?.minlength">Password must be atleast of 4 characters<br></small>
+                            <small *ngIf="getpassword.errors ?.value">Password must have :<br>atleast 1 uppercase character <br>atleast 1 number<br>atleast 1 lowercase character<br> 0 special characters</small>
+                        </div>
                 </div>
                 <div class="col"> 
                     <div class="form-group">
                         <label for="email" class="labelDsip">EMAIL<i style="color: rgba(255, 0, 0, 0.747);"> *</i></label>
-                        <input type="text" class="form-control" id="email" placeholder="abc@example.com" name="email" (change)="changeDistrict(this);" >
-                        <small id="emailHelp" class="form-text invalidError"></small>
+                        <input type="text" formControlName="username" class="form-control" id="email" placeholder="abc@example.com" name="email" (change)="changeDistrict(this);" >
+                        <div *ngIf="getUsername.invalid && getUsername.touched" class="text-danger">
+                            <small *ngIf="getUsername.errors ?.required">Email is required<br></small>
+                            <small *ngIf="getUsername.errors ?.value">Email is not correct</small>
+                        </div>
                     </div>
                 </div>
         </div>
@@ -112,7 +136,7 @@
             <label for="statePlace" class="labelDsip">STATE AND DISTRICT</label>
             <div class="form-row">
                 <div class="col">
-                    <select class="browser-default custom-select" selected="selected" #state name="state" id="state" (change)="changeDistrict(state.value)">
+                    <select formControlName='state' class="browser-default custom-select" selected="selected" #state name="state" id="state" (change)="changeDistrict(state.value)">
                         <option value="NONE">Select your state</option>
                         <option value="WEST BENGAL">WEST BENGAL</option>
                         <option value="GUJRAT">GUJRAT</option>
@@ -122,7 +146,7 @@
                     <small id="stateHelp" class="invalidError"></small>
                 </div>
                 <div class="col">
-                    <select name="subcategory" id="subcategory" class="browser-default custom-select" >
+                    <select formControlName='district' name="subcategory" id="subcategory" class="browser-default custom-select" >
                         <option *ngFor="let place of district">{{place.name}}</option>
                     </select>
                     <small id="districtHelp" class="invalidError"></small>
@@ -137,25 +161,22 @@
                         <input type="number" style="padding-left: 0px;" class="form-control" id="phoneCountryCode" placeholder="  +91" disabled="disabled">
                     </div>
                     <div class="col">
-                        <input type="number" class="form-control" id="phoneNumber" value="" placeholder="ENTER 10 DIGIT NUMBER" name="phone" >
+                        <input type="number" formControlName="phone" class="form-control" id="phoneNumber" value="" placeholder="ENTER 10 DIGIT NUMBER" name="phone" >
                     </div>
                 </div>
-                <small id="phoneHelp" class="invalidError"></small>
+                <div *ngIf="getPhone.invalid && getPhone.touched" class="text-danger">
+                    <small *ngIf="getPhone.errors ?.required">Mobile Number is required<br></small>
+                    <small *ngIf="getPhone.errors ?.value">Moble number is not correct</small>
+                </div>
             </div>
             <div class="form-group col">
                 <label  class="labelDsip">HOBBIES</label>
                 <div class="form-row form-control" style="height: auto;" >
-                    <div class="custom-control custom-checkbox" style="padding-right: 40px;"> 
-                        <input type="checkbox" class="custom-control-input" id="customCheck1" name="hobby" value="football" >
-                        <label class="custom-control-label" for="customCheck1">FootBall</label>
-                    </div>
-                    <div class="custom-control custom-checkbox" style="padding-right: 40px;">
-                        <input type="checkbox" class="custom-control-input" id="customCheck2" name="hobby" value="cricket" >
-                        <label class="custom-control-label" for="customCheck2">Cricket</label>
-                    </div>
-                    <div class="custom-control custom-checkbox" style="padding-right: 40px;">
-                        <input type="checkbox" class="custom-control-input" id="customCheck3" name="hobby" value="other" >
-                        <label class="custom-control-label" for="customCheck3">OTHER</label>
+                    <div *ngFor="let hobby of hobbyArr">
+                        <div class="custom-control custom-checkbox inline" style="padding-right: 40px;"> 
+                            <input type="checkbox" (change)="changeHobby($event)" id="{{hobby.key}}" class="custom-control-input" name="football" value={{hobby.value}} >
+                            <label class="custom-control-label" for="{{hobby.key}}">{{hobby.key}}</label>
+                        </div>
                     </div>
                 </div>
                 <small id="hobbyHelp" class="invalidError"></small>
@@ -173,7 +194,7 @@
         <hr class="footer"/> 
         <div class="submit-btn" >
             <span id="button-replace">
-                <input type="submit" class="btn btn-primary" id="submit_button" value="REGISTER"/>
+                <input type="submit" [class.btn-primary]="'!loginForm.valid'" [disabled]="!registerForm.valid" class="btn btn-primary" id="submit_button" value="REGISTER"/>
             </span>
             <input type="button" class="btn btn-secondary" id="reset_btn" value="RESET">
         </div>

@@ -10,7 +10,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from "@angular/common/http";
-import { loginResponse } from './classes/loginResponse';
+// import { loginResponse } from './classes/loginResponse';
 import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
@@ -30,7 +30,7 @@ import { AdminComponent } from './admin/admin.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [ loginResponse],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

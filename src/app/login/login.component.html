@@ -19,9 +19,9 @@
               <small *ngIf="getPassword.errors ?.value">Password must have :<br>atleast 1 uppercase character <br>atleast 1 number<br>atleast 1 lowercase character<br> 0 special characters</small>
             </div>            
           </div>
-          
+          <small id="credentials" class="text-danger" >{{credentialsMatch}}</small>
           <div style="border-top: 1px solid white;padding-top: 20px;"> 
-            <small id="credentials" class="text-danger" >{{credentialsMatch}}</small>
+            
             <button type="submit" class="btn" [disabled]="!loginForm.valid" id="login_button" [class.btn-primary]="'!loginForm.valid'">LOGIN</button>
             <button type="button" class="register btn btn-secondary" id="register" value="REGISTER"  routerLink="/register">REGISTER</button>
           </div>

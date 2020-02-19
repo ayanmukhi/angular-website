@@ -24,14 +24,6 @@ export class AuthGuard implements CanActivate {
 
   resolve(route: ActivatedRouteSnapshot){
     if( localStorage.getItem("jwt") ) {
-      // this.user = JSON.parse(jwt_decode(localStorage.getItem('jwt'))); 
-      // console.log("status"+this.user.data.status);
-      // if( this.user.data.status == "A") {
-      //   this.route.navigate(['/admin']);
-      // }
-      // else {
-      //   this.route.navigate(['/profile']);
-      // }
       return true;
     }
     this.route.navigate(['']);
@@ -40,11 +32,13 @@ export class AuthGuard implements CanActivate {
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot) : boolean {
-      if( localStorage.getItem('token')) {
-        return true;
+    state: RouterStateSnapshot) {
+      if( localStorage.getItem('jwt')) {
+        this.route.navigate(['/profile']);
+        return false;
       }
-      return false;
+      
+      return true;
     }
   
 }

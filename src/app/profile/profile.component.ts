@@ -15,10 +15,7 @@ export class ProfileComponent implements OnInit {
   userData:getResponse;
   constructor(private _apiservice: ApiServiceService, private route:Router ) { }
 
-  logout() { 
-    localStorage.clear();
-    this.route.navigate(['']);
-  }
+  
 
 
   ngOnInit() {
