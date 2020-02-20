@@ -166,7 +166,7 @@ export class RegisterComponent implements OnInit {
         case "GUJRAT":{
           this.district = [
             {name: "Please select the district", value: "NONE"},
-            {name: "Alipurduar", value: "Alipurduar"},
+            {name: "Bhavnagar", value: "Bhavnagar"},
             {name: "Amreli", value: "Amreli"}
           ];
           break;

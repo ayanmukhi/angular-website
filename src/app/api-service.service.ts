@@ -23,25 +23,25 @@ export class ApiServiceService {
   constructor(private readonly httpclient: HttpClient) { }
 
   get(rawtoken): Observable <getResponse> {
-    const opts = {
-      headers: new HttpHeaders({
-        'Authorization': 'Bearer ' + rawtoken
-      })
-    };
+    // const opts = {
+    //   headers: new HttpHeaders({
+    //     'Authorization': 'Bearer ' + rawtoken
+    //   })
+    // };
     this.token = JSON.parse(jwt_decode(rawtoken));
     this.sic = this.token.sic;
-    return this.httpclient.get<getResponse>(environment.getapi + "/" + this.sic, opts);
+    return this.httpclient.get<getResponse>(environment.getapi + "/" + this.sic);
   }
 
   getadmin(rawtoken): Observable <getResponse> {
-    const opts = {
-      headers: new HttpHeaders({
-        'Authorization': 'Bearer ' + rawtoken
-      })
-    };
+    // const opts = {
+    //   headers: new HttpHeaders({
+    //     'Authorization': 'Bearer ' + rawtoken
+    //   })
+    // };
     this.token = JSON.parse(jwt_decode(rawtoken));
     this.sic = this.token.sic;
-    return this.httpclient.get<getResponse>(environment.getapi, opts);
+    return this.httpclient.get<getResponse>(environment.getapi);
   }
 
   login(data): Observable <loginResponse>  {
