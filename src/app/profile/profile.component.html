@@ -23,7 +23,7 @@
         </thead>
         <tbody>
             
-            <tr>
+            <tr *ngIf="dataFetched">
                 <td>{{userData.result.sic}}</td>
                 <td>{{userData.result.stu_name}}</td>
                 <td>{{userData.result.gender}}</td>

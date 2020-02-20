@@ -10,11 +10,11 @@ import { getallResponse } from '../classes/getallresponse';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-
+  dataFetched = false;
   sic:number;
   token:any;
-  Data:getallResponse[];
-  records:[];
+  Data:getallResponse;
+  records:[{}];
   constructor(private _apiservice: ApiServiceService, private route:Router ) { }
 
   
@@ -27,9 +27,9 @@ export class AdminComponent implements OnInit {
   }
 
   saveData(data) {
+    this.dataFetched = true;
     this.Data = data;
     this.records = this.Data.result;
-    console.log(this.Data.result[1].sic);
   }
 
 }

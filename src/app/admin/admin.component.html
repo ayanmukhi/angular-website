@@ -21,8 +21,8 @@
                 <th>hobby   </th>
             </tr>
         </thead>
-        <tbody>   
-            <tr *ngFor="let userData of records">
+        <tbody *ngIf="dataFetched">   
+            <tr  *ngFor="let userData of records" >
                 <td>{{userData.sic}}</td>
                 <td>{{userData.stu_name}}</td>
                 <td>{{userData.gender}}</td>

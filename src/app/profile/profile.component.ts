@@ -10,6 +10,7 @@ import { getResponse } from '../classes/getresponse';
 })
 export class ProfileComponent implements OnInit {
 
+  dataFetched = false;
   sic:number;
   token:any;
   userData:getResponse;
@@ -27,6 +28,7 @@ export class ProfileComponent implements OnInit {
   }
 
   saveData(data) {
+    this.dataFetched = true;
     this.userData = data;
     console.log(this.userData.result.sic);
   }
