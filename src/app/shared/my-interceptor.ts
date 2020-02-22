@@ -20,8 +20,6 @@ import {HttpRequest,HttpHeaders, HttpHandler, HttpEvent, HttpInterceptor, HttpRe
                 'Authorization': 'Bearer '+ this.rawtoken,
                 'Content-Type': 'application/json'
             });
-        
-      
             const cloneReq = request.clone({headers});
             console.log("Before making api call : ", headers);
             return next.handle(cloneReq);
