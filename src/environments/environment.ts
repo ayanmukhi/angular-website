@@ -7,6 +7,7 @@ export const environment = {
   loginapi: 'http://slimapp/profile/index.php/api/v1/login',
   getapi: 'http://slimapp/profile/index.php/api/v1/students',
   registerapi: 'http://slimapp/profile/index.php/api/v1/students',
+  delapi: 'http://slimapp/profile/index.php/api/v1/students',
   production: false
 };
 
