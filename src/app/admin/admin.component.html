@@ -18,7 +18,8 @@
                 <th>email</th>
                 <th>password</th>
                 <th>status</th>
-                <th>hobby   </th>
+                <th>hobby</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody *ngIf="dataFetched">   
@@ -40,6 +41,7 @@
                 <td>{{userData.password}}</td>
                 <td>{{userData.status}}</td>
                 <td>{{userData.hobby}}</td>
+                <td><button (click)="delete()" class="btn btn-danger" value="DELETE">DELETE</button></td>
             </tr>
     </tbody>
     </table>

@@ -1,6 +1,6 @@
 export interface getallResponse {
     status:number;
-    result: 
+    data: 
     [
         {
             'sic':number,

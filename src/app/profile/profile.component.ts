@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
   saveData(data) {
     this.dataFetched = true;
     this.userData = data;
-    console.log(this.userData.result.sic);
+    console.log(this.userData.data.sic);
   }
 
 }

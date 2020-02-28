@@ -4,6 +4,8 @@ import { passwordValidator, nameFirstValidator, rolValidator, percValidator, ema
 import { ApiServiceService } from "../api-service.service";
 import { Router } from '@angular/router';
 import { RegisterResponse } from "../classes/registerResponse";
+import { AbstractControl } from "@angular/forms";
+import { CustomErrorHandlerService } from '../custom-error-handler.service';
 
 
 @Component({
@@ -11,7 +13,12 @@ import { RegisterResponse } from "../classes/registerResponse";
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
 export class RegisterComponent implements OnInit {
+
+  age = false;
+  duplicatePhone = false;
+  duplicateEmail = false;
 
 
   selectedhobby = [];
@@ -29,13 +36,15 @@ export class RegisterComponent implements OnInit {
       "value":"other"
     }
   ];
+
   public district = [
     {name: "---", value: "NONE"}
   ];
+
   public credentialsMatch = "";
   userData : RegisterResponse;
 
-  constructor( private fb: FormBuilder, private _apiservice: ApiServiceService, private route: Router) { }
+  constructor( private fb: FormBuilder, private _apiservice: ApiServiceService, private route: Router, private _err: CustomErrorHandlerService) { }
 
 
   changeHobby(event) {
@@ -47,6 +56,11 @@ export class RegisterComponent implements OnInit {
       this.selectedhobby.splice(index, 1);
     }
     console.log(this.selectedhobby);
+  }
+
+  resetForm() {
+    console.log("in reset");
+    this.registerForm.reset();
   }
 
   registerForm = this.fb.group({
@@ -68,6 +82,14 @@ export class RegisterComponent implements OnInit {
     password: ['', [Validators.required, Validators.minLength(4), passwordValidator]],
     hobby: [this.selectedhobby]
   });
+
+  phoneChanged() {
+    this.duplicatePhone = false;
+  }
+
+  emailChanged() {
+    this.duplicateEmail = false;
+  }
 
 
 
@@ -131,20 +153,49 @@ export class RegisterComponent implements OnInit {
     console.log(this.registerForm.value);
     this._apiservice.register(this.registerForm.value)
     .subscribe(
-      data => this.saveData(data),
-      error => this.errorData(error)
+      data => {
+        //console.log("first " + data);
+        // if( data.success ){
+          this.saveData(data.success);
+        // }
+        // else {
+        //   console.log(data.message);
+        // }
+      },
+      error => {
+        this.errorData(error);
+      } 
     );
   }
-
-  errorData(error){
-    console.log("in error");
-  }
-
+  
 
   saveData(data) {
-    console.log('before route');
+    console.log("first " + data);
     this.route.navigate(['']);
   }
+
+
+  errorData(errorResponse) {
+    console.log(errorResponse.error.message);
+    let msg = errorResponse.error.message;
+    if( msg == "age must be between 15 - 30 years" ) {
+      this.age = true;
+      console.log("age");
+    }
+    else if( msg == "user with this email is already registered, use a different email" ) {
+      this.duplicateEmail = true;
+      console.log("email");
+    }
+    else if( msg = "user with this phone is already registered, use a different mobile number") {
+      this.duplicatePhone = true;
+      console.log("phone");
+    }
+    else {
+      console.log(errorResponse);
+      console.log("other");
+    }
+  }
+
 
   changeDistrict(state) {
     switch(state) {

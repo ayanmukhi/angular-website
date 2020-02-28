@@ -55,9 +55,7 @@ export class LoginComponent implements OnInit {
 
   saveData(data) {
     this.userData = data;
-    
     localStorage.setItem('jwt', this.userData.token);
-    
 
     // this.route.navigate(['/profile']);
     console.log("now " + this.userData.data.status);
@@ -68,6 +66,7 @@ export class LoginComponent implements OnInit {
       this.route.navigate(['/profile']);
     }
   }
+
 
 
   ngOnInit() {

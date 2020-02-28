@@ -29,7 +29,7 @@ export class AdminComponent implements OnInit {
   saveData(data) {
     this.dataFetched = true;
     this.Data = data;
-    this.records = this.Data.result;
+    this.records = this.Data.data;
   }
 
 }

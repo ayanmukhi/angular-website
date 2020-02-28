@@ -1,6 +1,6 @@
 export interface getResponse {
     status:number;
-    result: {
+    data: {
         'sic':number,
         "stu_name": string,
         "gender": string,

@@ -6,6 +6,7 @@ import { loginResponse } from './classes/loginResponse'
 import { getResponse } from "./classes/getresponse";
 import * as jwt_decode from 'jwt-decode';
 import { RegisterResponse } from './classes/registerResponse';
+import { duplicate } from './classes/duplicate';
 
 
 @Injectable({
@@ -51,4 +52,5 @@ export class ApiServiceService {
   register(data): Observable <RegisterResponse> {
     return this.httpclient.post<RegisterResponse>(environment.registerapi, data);
   }
+
 }

@@ -1,10 +1,12 @@
 import { AbstractControl } from "@angular/forms";
+import { RegisterComponent } from "../register/register.component";
 
 export function emailValidator ( control: AbstractControl): {[key:string]: any} | null {
     const valid = /(\S+@\S+)|()/.test(control.value);
     console.log(valid);
     return valid ? null : { 'value': {value: true}};
 }
+
 
 export function passwordValidator ( control: AbstractControl): {[key:string]: any} | null {
     var valid = false;
@@ -36,6 +38,6 @@ export function percValidator ( control: AbstractControl) {
 }
 
 export function phoneValidator ( control: AbstractControl ): {[key:string]:any} | null {
-    const valid = /^[1-9]{1,9}$/.test(control.value);
+    const valid = /^[0-9]{1,9}$/.test(control.value);
     return valid ? null : { 'value': {value: true}};
 }

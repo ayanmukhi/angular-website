@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
@@ -13,6 +13,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 // import { loginResponse } from './classes/loginResponse';
 import { AdminComponent } from './admin/admin.component';
+import { CustomErrorHandlerService } from './custom-error-handler.service';
 
 @NgModule({
   declarations: [
@@ -32,10 +33,15 @@ import { AdminComponent } from './admin/admin.component';
     HttpClientModule
   ],
   providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: MyInterceptor,
-    multi: true
-  }],
+      provide: HTTP_INTERCEPTORS,
+      useClass: MyInterceptor,
+      multi: true
+    },
+    {
+      provide: ErrorHandler,
+      useClass: CustomErrorHandlerService
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
