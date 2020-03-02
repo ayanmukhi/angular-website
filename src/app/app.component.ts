@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-// import { ApiServiceService } from "./api-service.service";
-// import { Comments } from "./classes/comments";
 
 
 @Component({

@@ -14,6 +14,8 @@ import { RegisterComponent } from './register/register.component';
 // import { loginResponse } from './classes/loginResponse';
 import { AdminComponent } from './admin/admin.component';
 import { CustomErrorHandlerService } from './custom-error-handler.service';
+import { DetailsComponent } from './details/details.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { CustomErrorHandlerService } from './custom-error-handler.service';
     ProfileComponent,
     RegisterComponent,
     AdminComponent,
+    DetailsComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

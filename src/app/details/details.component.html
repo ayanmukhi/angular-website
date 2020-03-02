@@ -1,0 +1,50 @@
+<div class="container">
+    <table class="table table-striped table-responsive table-bordered">
+        <thead>
+            <tr>
+                <th>sic</th>
+                <th>name</th>
+                <th>gender</th>
+                <th>father name</th>
+                <th>mother name</th>
+                <th>dob</th>
+                <th>matric board</th>
+                <th>matric roll</th>
+                <th>matric perc</th>
+                <th>state</th>
+                <th>district</th>
+                <th>street address</th>
+                <th>phone</th>
+                <th>email</th>
+                <th>password</th>
+                <th>status</th>
+                <th>hobby   </th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr *ngIf="dataFetched">
+                <td>{{userData.data.sic}}</td>
+                <td>{{userData.data.stu_name}}</td>
+                <td>{{userData.data.gender}}</td>
+                <td>{{userData.data.father_name}}</td>
+                <td>{{userData.data.mother_name}}</td>
+                <td>{{userData.data.dob}}</td>
+                <td>{{userData.data.matric_board}}</td>
+                <td>{{userData.data.matric_roll}}</td>
+                <td>{{userData.data.matric_perc}}</td>
+                <td>{{userData.data.state}}</td>
+                <td>{{userData.data.district}}</td>
+                <td>{{userData.data.street_address}}</td>
+                <td>{{userData.data.phone}}</td>
+                <td>{{userData.data.email}}</td>
+                <td>{{userData.data.password}}</td>
+                <td>{{userData.data.status}}</td>
+                <td>{{userData.data.hobby}}</td>
+            </tr>
+    </tbody>
+    </table>
+</div>
+    
+
+<br>

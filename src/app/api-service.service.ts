@@ -34,6 +34,11 @@ export class ApiServiceService {
     return this.httpclient.get<getResponse>(environment.getapi + "/" + this.sic);
   }
 
+  //function for admin to fetch a user detail
+  getDetails(sic): Observable <getResponse> {
+    return this.httpclient.get<getResponse>(environment.getapi + "/" + sic);
+  }
+
   getadmin(rawtoken): Observable <getResponse> {
     // const opts = {
     //   headers: new HttpHeaders({
