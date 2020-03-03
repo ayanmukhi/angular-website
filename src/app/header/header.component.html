@@ -1,7 +1,7 @@
 <div class="contanier-fluid">
     
     <div class="col-md-8" class="headerTitle" [style.font-size]="fontweight" [style.line-height]="headerHeight"  routerLink="/">
-        <span routerLink="/">HIGH SCHOOL OF ONE PIECE</span>
+        <span style="cursor: pointer;" routerLink="/">HIGH SCHOOL OF ONE PIECE</span>
         <span (click)="logout()" class="logout" *ngIf="checkJwt()" id="logout_button">LOGOUT</span>
     </div>
     

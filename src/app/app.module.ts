@@ -36,7 +36,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [{
+  providers: [
+    
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: MyInterceptor,
       multi: true

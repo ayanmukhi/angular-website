@@ -8,6 +8,8 @@ export const environment = {
   getapi: 'http://slimapp/profile/index.php/api/v1/students',
   registerapi: 'http://slimapp/profile/index.php/api/v1/students',
   delapi: 'http://slimapp/profile/index.php/api/v1/students',
+  postActapi: 'http://slimapp/profile/index.php/api/v1/activities',
+  getActapi: 'http://slimapp/profile/index.php/api/v1/activities',
   production: false
 };
 

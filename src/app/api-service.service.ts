@@ -7,6 +7,7 @@ import { getResponse } from "./classes/getresponse";
 import * as jwt_decode from 'jwt-decode';
 import { RegisterResponse } from './classes/registerResponse';
 import { deleteResponse } from "./classes/deleteResponse";
+import { activity } from './classes/getActivity';
 
 
 @Injectable({
@@ -60,6 +61,14 @@ export class ApiServiceService {
 
   delete(data): Observable <deleteResponse> {
     return this.httpclient.delete<deleteResponse>(environment.delapi + "/" + data);
+  }
+  
+  postActivity(data) {
+    return this.httpclient.post<any>(environment.postActapi, data);
+  }
+
+  getActivity(sic): Observable <activity> {
+    return this.httpclient.get<activity>(environment.getActapi + "/" + sic);
   }
 
 }

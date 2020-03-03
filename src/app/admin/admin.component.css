@@ -1,3 +1,10 @@
 .container{
-    margin-top: 10%;
+    margin-top: 5%;
+    width: fit-content;
+}
+button {
+    margin: 2px;
+}
+.table {
+    height: 500px;
 }

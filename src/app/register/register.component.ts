@@ -154,13 +154,7 @@ export class RegisterComponent implements OnInit {
     this._apiservice.register(this.registerForm.value)
     .subscribe(
       data => {
-        //console.log("first " + data);
-        // if( data.success ){
           this.saveData(data.success);
-        // }
-        // else {
-        //   console.log(data.message);
-        // }
       },
       error => {
         this.errorData(error);
