@@ -16,6 +16,8 @@ import { AdminComponent } from './admin/admin.component';
 import { CustomErrorHandlerService } from './custom-error-handler.service';
 import { DetailsComponent } from './details/details.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [
     
@@ -46,8 +49,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
     {
       provide: ErrorHandler,
       useClass: CustomErrorHandlerService
-    }
+    },
+    DatePipe,
   ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule {

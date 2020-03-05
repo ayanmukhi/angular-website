@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: '', component: LoginComponent, canActivate: [AuthGuard]},
   {path: 'admin', component:AdminComponent, resolve: [AuthGuard]},
   {path: 'profile', component: ProfileComponent, resolve: [AuthGuard]},
-  {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
+  {path: 'register', component: RegisterComponent},
   {path: 'details/:sic', component: DetailsComponent},
   { path: '404', component: NotFoundComponent  },
   { path: '**', redirectTo: '404' }

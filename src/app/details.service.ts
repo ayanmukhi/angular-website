@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { getResponse } from './classes/getresponse';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,8 +7,8 @@ import { getResponse } from './classes/getresponse';
 export class DetailsService {
 
   constructor() { }
-
-  sic:number;
+  private messageSource = new BehaviorSubject("default message");
+  sic = this.messageSource.asObservable();
   stu_name: string;
   gender: string;
   father_name: string;
@@ -27,6 +27,11 @@ export class DetailsService {
   hobby: []
   
   user:string;
+
+  changeMessage(message: string) {
+    this.messageSource.next(message)
+  }
+
   detailsUser() {
     this.user = JSON.stringify([
         {"sic":this.sic},

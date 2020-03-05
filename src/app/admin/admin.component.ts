@@ -30,22 +30,6 @@ export class AdminComponent implements OnInit {
   }
 
   details(userDetails) {
-    this._details.sic = userDetails.sic;
-    this._details.stu_name = userDetails.stu_name;
-    this._details.gender = userDetails.gender;
-    this._details.father_name = userDetails.father_name;
-    this._details.mother_name = userDetails.mother_name;
-    this._details.dob = userDetails.dob;
-    this._details.street_address = userDetails.street_address;
-    this._details.matric_board = userDetails.matric_board;
-    this._details.matric_perc = userDetails.matric_perc;
-    this._details.matric_roll = userDetails.matric_roll;
-    this._details.state = userDetails.state;
-    this._details.district = userDetails.district;
-    this._details.email = userDetails.email;
-    this._details.password = userDetails.password;
-    this._details.status = userDetails.status;
-    this._details.hobby = userDetails.hobby;
     this.route.navigate(['/details/' + userDetails.sic]);
   }
 

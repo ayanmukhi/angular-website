@@ -4,8 +4,8 @@ import { emailValidator, passwordValidator } from '../shared/form-validators';
 import { ApiServiceService } from "../api-service.service";
 import { loginResponse } from '../classes/loginResponse';
 import { Router } from '@angular/router';
-
 import * as jwt_decode from 'jwt-decode';
+
 
 
 
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
   });
 
 
-  onSubmit(){
+  onSubmit(){ 
     this._apiservice.login(this.loginForm.value)
     .subscribe(
       data => this.saveData(data),
@@ -66,8 +66,6 @@ export class LoginComponent implements OnInit {
       this.route.navigate(['/profile']);
     }
   }
-
-
 
   ngOnInit() {
   }

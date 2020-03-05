@@ -1,6 +1,8 @@
 <div class="container" style="display: flex;">
     <div class="col-md-2 left-panel" >
-        <div> DETAILS </div>
+        <div> DETAILS
+            <span style="cursor: pointer;" routerLink="/register"><fa-icon [icon]="faCoffee" style="float: right;" ></fa-icon></span>
+        </div>
         <div class="detail-panel" *ngIf="dataFetched">
             <div>{{userData.data.sic}}</div>
             <div>{{userData.data.stu_name}}</div>
@@ -23,19 +25,19 @@
     </div>
     <div class="col">
         <div>Activities</div>
-        <div *ngIf="actDataFetched">
-            <div *ngFor="let activity of acts">
-                <div class="activities">
-                    {{activity}}
+        <div *ngIf="actDataFetched" class="container-fluid">
+            <div *ngFor="let data of acts" >
+                <div class="activities col">
+                    {{data.activity}}
                 </div>
-            </div>
-            
+                <span class="deletebtn">
+                    <input type="button" class="btn btn-danger" value="DELETE" (click)="deleteAct(data.act_id)">
+                </span>
+            </div>       
         </div>
-        <textarea class="activity" name="activity" placeholder="Write your new activity" #act></textarea>
-            <input style="float: right;" type="button" class="btn btn-primary" value="Add" (click)="addActivity(userData.data.sic, act.value)"> 
-    </div>
-
-    
+        <textarea   class="activity" (click)="act" name="activity" placeholder="Write your new activity" #act></textarea>
+        <input style="float: right;" type="button" [disabled]="act.value == '' ? true : false" class="btn btn-primary" value="Add"  (click)="addActivity(userData.data.sic, act.value); act.value = ''"> 
+    </div>    
 </div>   
 
 <br>

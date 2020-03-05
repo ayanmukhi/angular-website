@@ -5,11 +5,8 @@
 
 export const environment = {
   loginapi: 'http://slimapp/profile/index.php/api/v1/login',
-  getapi: 'http://slimapp/profile/index.php/api/v1/students',
-  registerapi: 'http://slimapp/profile/index.php/api/v1/students',
-  delapi: 'http://slimapp/profile/index.php/api/v1/students',
-  postActapi: 'http://slimapp/profile/index.php/api/v1/activities',
-  getActapi: 'http://slimapp/profile/index.php/api/v1/activities',
+  baseUrl: 'http://slimapp/profile/index.php/api/v1/students',
+  actBaseUrl: 'http://slimapp/profile/index.php/api/v1/activities',
   production: false
 };
 

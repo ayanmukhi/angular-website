@@ -1,36 +1,38 @@
 import { Injectable } from "@angular/core";
-import { tap, delay } from "rxjs/operators";
 import { Observable } from "rxjs";
-import {HttpRequest,HttpHeaders, HttpHandler, HttpEvent, HttpInterceptor, HttpResponse, HttpErrorResponse } from "@angular/common/http";
-import { ProfileComponent } from '../profile/profile.component';
+import * as jwt_decode from 'jwt-decode';
+import {HttpRequest,HttpHeaders, HttpHandler, HttpEvent, HttpInterceptor} from "@angular/common/http";
   
   
   @Injectable(
    
   )
   export class MyInterceptor implements HttpInterceptor {
+    
+    constructor() {
+     }
 
-    constructor() { }
-
-    rawtoken = localStorage.getItem('jwt');
-
+    
+    rawtoken : string;
     //function which will be called for all http calls
     intercept(
       request: HttpRequest<any>,
       next: HttpHandler
     ): Observable<HttpEvent<any>> {
+            this.rawtoken = localStorage.getItem('jwt');
             const headers = new HttpHeaders({
                 'Authorization': 'Bearer '+ this.rawtoken,
                 'Content-Type': 'application/json'
             });
+            
+            // if( this.rawtoken != null) {
+            //   let token = JSON.parse(jwt_decode(this.rawtoken));
+            //     console.log("interceptor : " + token.sic);
+            // } 
             const cloneReq = request.clone({headers});
-            console.log("Before making api call : ", headers);
-            return next.handle(cloneReq).pipe(delay(5));
+            //console.log("Before making api call : ", headers);
+            return next.handle(cloneReq);
     }
 
     
 }
-// abstract class HttpBackend implements HttpHandler {
-//   abstract handle(req: HttpRequest<any>): Observable<HttpEvent<any>>
-// }
-  

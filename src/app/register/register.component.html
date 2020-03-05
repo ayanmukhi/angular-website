@@ -32,7 +32,7 @@
         <div class="form-row form-group-style">
             <div class="form-group col">
                 <label for="fatherName"  class="labelDsip">FATHER'S NAME<i style="color: rgba(255, 0, 0, 0.747);"> *</i></label>
-                <input type="text" formControlName="fatherName" name="fatherName" class="form-control" id="fatherName" value="" placeholder="ENTER FULL NAME OF FATHER" >
+                <input type="text" formControlName="fatherName" name="fatherName" class="form-control" id="fatherName" placeholder="ENTER FULL NAME OF FATHER" >
                 <div *ngIf="getfatherName.invalid && getfatherName.touched || getfatherName.dirty" class="text-danger">
                     <small *ngIf="getfatherName.errors ?.value">Father Name is not correct</small>
                 </div>
@@ -51,7 +51,7 @@
                     <div class="form-group col">
                         <label for="dob"  class="labelDsip">DATE OF BIRTH<i style="color: rgba(255, 0, 0, 0.747);"> *</i></label>
                         <input type="date" formControlName='dob' class="form-control" id="dob" name="date" >
-                        <!-- <small *ngIf="age" class="text-danger">Age must be between 15 - 30 years</small> -->
+                        <small *ngIf="age" class="text-danger">Age must be between 15 - 30 years</small>
                     </div>
                 </div>
                 
@@ -176,14 +176,14 @@
                 <div class="form-row form-control" style="height: auto;" >
                     <div *ngFor="let hobby of hobbyArr">
                         <div class="custom-control custom-checkbox inline" style="padding-right: 40px;"> 
-                            <input type="checkbox" (change)="changeHobby($event)" id="{{hobby.key}}" class="custom-control-input" name="football" value={{hobby.value}} >
+                            <input type="checkbox" (change)="changeHobby($event)" id="{{hobby.key}}" class="custom-control-input" name="{{hobby.value}}" value={{hobby.value}} >
                             <label class="custom-control-label" for="{{hobby.key}}">{{hobby.key}}</label>
                         </div>
                     </div>
                 </div>
                 <small id="hobbyHelp" class="invalidError"></small>
             </div>
-            <input type="number" id="sic" class="form-control" name="sic" hidden='hidden' value="" />
+            <input type="number" formControlName="sic" id="sic" class="form-control" name="sic" hidden='hidden'  />
             
         </div>
         <div class="row">
@@ -196,10 +196,10 @@
         <hr class="footer"/> 
         <div class="submit-btn" >
             <span id="button-replace">
-                <input type="submit" [class.btn-primary]="'!loginForm.valid'" [disabled]="!registerForm.valid" class="btn btn-primary" id="submit_button" value="REGISTER"/>
+                <input type="submit" *ngIf="curr" class="btn btn-primary" [disabled]="!registerForm.valid"  id="update_button" value="UPDATE"/>
+                <input type="submit" *ngIf="!curr" class="btn btn-primary"   id="submit_button" value="REGISTER"/>
             </span>
             <input type="button" class="btn btn-secondary" (click)="resetForm()"  value="RESET">
         </div>
     </form>  
-
 </div>

@@ -1,11 +1,19 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
-import { passwordValidator, nameFirstValidator, rolValidator, percValidator, emailValidator, phoneValidator } from '../shared/form-validators';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators} from '@angular/forms';
+import { passwordValidator,
+         nameFirstValidator,
+         rolValidator,
+         percValidator, 
+         emailValidator, 
+         phoneValidator 
+        } from '../shared/form-validators';
 import { ApiServiceService } from "../api-service.service";
 import { Router } from '@angular/router';
 import { RegisterResponse } from "../classes/registerResponse";
-import { AbstractControl } from "@angular/forms";
 import { CustomErrorHandlerService } from '../custom-error-handler.service';
+import { DetailsService } from '../details.service';
+import { getResponse } from '../classes/getresponse';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -16,13 +24,16 @@ import { CustomErrorHandlerService } from '../custom-error-handler.service';
 
 export class RegisterComponent implements OnInit {
 
+  curr:boolean = false;
+  currUser:getResponse;
   age = false;
   duplicatePhone = false;
   duplicateEmail = false;
+  sic:number;
 
 
   selectedhobby = [];
-  hobbyArr = [
+  hobbyArr =  [
     {
       "key":"football",
       "value":"football"
@@ -37,15 +48,87 @@ export class RegisterComponent implements OnInit {
     }
   ];
 
-  public district = [
-    {name: "---", value: "NONE"}
-  ];
+  public district = [];
+    
 
   public credentialsMatch = "";
   userData : RegisterResponse;
 
-  constructor( private fb: FormBuilder, private _apiservice: ApiServiceService, private route: Router, private _err: CustomErrorHandlerService) { }
+  constructor(  private fb: FormBuilder, 
+                private _apiservice: ApiServiceService, 
+                private route: Router,
+                private _datepipe: DatePipe
+              ) {
+    
+    this.district = [
+      {name: "---", value: "NONE"}
 
+    ];
+ }
+
+  //fetch the details of the user if some one is logged in
+  ngOnInit() {
+    
+    if( localStorage.getItem('jwt') != null) {
+      this._apiservice.get(localStorage.getItem('jwt'))
+      .subscribe( 
+        response => {
+          this.curr = true;
+          this.currUser = response;
+          console.log(this.currUser.data);
+          this.populateFields();
+        },
+        error => {
+          console.log(error);
+        }
+      )
+    }
+  }
+
+
+  //function to populate the fields 
+  populateFields() {
+
+    //parsing the name of the user
+    let firstName = "";
+    let secondName = "";
+    let thirdName = "";
+    let namestr = this.currUser.data.stu_name.split(' ');
+    console.log(namestr);
+    if( namestr.length == 3) {
+      firstName = namestr[0];
+      secondName = namestr[1];
+      thirdName = namestr[2];
+    }
+    else {
+      firstName = namestr[0];
+      thirdName = namestr[1];
+    }
+    let date = this.currUser.data.dob;
+    date = date.slice(0,2) + date.slice(4)
+    date = this._datepipe.transform(date, 'yyyy-MM-dd');
+    console.log("date : " + this.currUser.data.dob);
+    this.registerForm = this.fb.group({
+      nameFirst: firstName,
+      nameSecond: secondName,
+      nameThird: thirdName,
+      fatherName: this.currUser.data.father_name,
+      motherName: this.currUser.data.mother_name,
+      dob: date,
+      gender: this.currUser.data.gender,
+      streetaddress: this.currUser.data.street_address,
+      state: this.currUser.data.state,
+      district: this.currUser.data.district,
+      board: this.currUser.data.matric_board,
+      roll: this.currUser.data.matric_roll,
+      perc: this.currUser.data.matric_perc,
+      username: this.currUser.data.email,
+      phone: this.currUser.data.phone,
+      password: this.currUser.data.password,
+      hobby: this.currUser.data.hobby,
+      sic: this.currUser.data.sic
+     })
+  }
 
   changeHobby(event) {
     let index = this.selectedhobby.indexOf(event.target.value); 
@@ -145,21 +228,35 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('phone');
   }
 
-  ngOnInit() {
-  }
+  
 
 
   onSubmit(){
     console.log(this.registerForm.value);
-    this._apiservice.register(this.registerForm.value)
-    .subscribe(
-      data => {
-          this.saveData(data.success);
-      },
-      error => {
-        this.errorData(error);
-      } 
-    );
+    if( this.curr == false) {
+      this._apiservice.register(this.registerForm.value)
+        .subscribe(
+          data => {
+              this.saveData(data.success);
+          },
+          error => {
+            this.errorData(error);
+          } 
+        );
+    } 
+    else {
+      this._apiservice.update(this.registerForm.value)
+        .subscribe(
+          data => {
+              console.log(data.success);
+              this.route.navigate(['/profile']);
+          },
+          error => {
+            this.errorData(error);
+          } 
+        );
+    }
+    
   }
   
 

@@ -1,5 +1,4 @@
 import { AbstractControl } from "@angular/forms";
-import { RegisterComponent } from "../register/register.component";
 
 export function emailValidator ( control: AbstractControl): {[key:string]: any} | null {
     const valid = /(\S+@\S+)|()/.test(control.value);

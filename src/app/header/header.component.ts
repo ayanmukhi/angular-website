@@ -42,6 +42,7 @@ export class HeaderComponent implements OnInit {
 
   logout() { 
     localStorage.clear();
+    console.log("JWT : " + localStorage.getItem('jwt'));
     this.route.navigate(['']);
   }
 
